@@ -50,6 +50,12 @@ Score content on a 0-10 scale based on importance and relevance:
 - Off-topic content
 - Trivial updates
 
+**Reader focus — weight scores toward this:** The reader is an AI-focused solo creator/consultant (an "AI-augmented FDE") who turns AI developments into content and client value. Score noticeably HIGHER for items in these three buckets that could become a content topic:
+1. AI applications & playbooks — concrete ways to use new AI tools / agents / prompts; real cases of using AI to make money or boost productivity.
+2. Models & AI coding-tool updates — Claude / Claude Code, major model releases, and AI coding / agent tooling updates.
+3. AI business & adoption — how AI reshapes small businesses and the "AI-first operator" angle.
+Score LOWER for pure academic papers, low-level systems/kernel internals, funding gossip, and anything not actionable or not turnable into a content topic for this reader.
+
 Consider:
 - Technical depth and novelty
 - Potential impact on the field
