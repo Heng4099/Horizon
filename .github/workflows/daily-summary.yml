@@ -2,7 +2,7 @@ name: Daily Horizon Summary
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at 08:00 Asia/Shanghai (00:00 UTC)
+    - cron: '17 22 * * *'  # 北京早 6:17 触发(UTC 22:17)；提前+避开整点拥堵，抵消 GitHub 排队延迟，确保早 8 点前送达
   workflow_dispatch:      # Allow manual trigger
 
 jobs:
