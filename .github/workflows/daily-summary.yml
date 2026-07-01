@@ -2,7 +2,7 @@ name: Daily Horizon Summary
 
 on:
   schedule:
-    - cron: '17 22 * * *'  # 北京早 6:17 触发(UTC 22:17)；提前+避开整点拥堵，抵消 GitHub 排队延迟，确保早 8 点前送达
+    - cron: '5 20 * * *'  # 北京早 4:05 触发(UTC 20:05)；留足 GitHub 排队延迟(1-2h)+降并发后约42分钟运行的余量，确保早 8 点前送达
   workflow_dispatch:      # Allow manual trigger
 
 jobs:
