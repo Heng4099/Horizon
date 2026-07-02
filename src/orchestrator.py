@@ -144,7 +144,7 @@ class HorizonOrchestrator:
             await self._enrich_important_items(important_items)
 
             # 7. Generate and save daily summaries for each configured language
-            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")  # 北京时间，避免凌晨触发时 UTC 还停在前一天
             for lang in self.config.ai.languages:
                 summarizer = DailySummarizer()
                 summary = await summarizer.generate_summary(important_items, today, len(all_items), language=lang)
@@ -228,7 +228,7 @@ class HorizonOrchestrator:
             # Send webhook failure notification if configured
             if self.webhook_notifier:
                 await self.webhook_notifier.send_failure(
-                    date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                    date=datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d"),  # 北京时间
                     error_message=str(e),
                 )
 
