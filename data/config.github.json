@@ -82,6 +82,18 @@
         "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
         "enabled": true,
         "category": "github-trending"
+      },
+      {
+        "name": "量子位",
+        "url": "https://www.qbitai.com/feed",
+        "enabled": true,
+        "category": "ai-news-cn"
+      },
+      {
+        "name": "Qwen Blog",
+        "url": "https://qwenlm.github.io/blog/index.xml",
+        "enabled": true,
+        "category": "model-update"
       }
     ],
     "reddit": {
@@ -139,7 +151,8 @@
     ],
     "request_body": {
       "title": "🌅 AI 日报 #{date}（精选 #{important_items} 条）",
-      "body": "#{summary?limit=1500}"
+      "body": "#{summary?limit=1500}",
+      "url": "#{post_url}"
     },
     "headers": ""
   }

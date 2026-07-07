@@ -253,7 +253,17 @@ class HorizonOrchestrator:
         Returns:
             List[ContentItem]: All fetched items
         """
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(
+            timeout=30.0,
+            # Browser UA: some feeds (e.g. qbitai.com) 403 non-browser agents
+            headers={
+                "User-Agent": (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/126.0 Safari/537.36"
+                )
+            },
+        ) as client:
             tasks = []
 
             # GitHub sources
@@ -418,8 +428,9 @@ class HorizonOrchestrator:
         This is a stable stage helper for integrations such as MCP.
 
         Sends all item titles, tags, and summaries to AI in a single call.
-        Items must already be sorted by ai_score descending so that the first
-        item in each duplicate group is always the highest-scored one.
+        Items must already be sorted by ai_score descending; within each
+        duplicate group the smallest index (= highest score) is kept as the
+        primary, regardless of the order the AI returns.
         Content (comments) from duplicate items is merged into the primary.
 
         Falls back to returning items unchanged if the AI call fails.
@@ -460,17 +471,26 @@ class HorizonOrchestrator:
         # Build a set of indices to drop (all non-primary duplicates)
         drop_indices: set[int] = set()
         for group in duplicate_groups:
-            if not isinstance(group, list) or len(group) < 2:
+            if not isinstance(group, list):
                 continue
-            primary_idx = group[0]
-            if primary_idx < 0 or primary_idx >= len(items):
+            # Sanitize AI output: keep only valid int indices, then keep the
+            # smallest index as primary — items are sorted by score descending,
+            # so this enforces "keep the highest-scored one" regardless of the
+            # order the AI happened to emit.
+            valid_indices = sorted(
+                {
+                    idx
+                    for idx in group
+                    if isinstance(idx, int)
+                    and not isinstance(idx, bool)
+                    and 0 <= idx < len(items)
+                }
+            )
+            if len(valid_indices) < 2:
                 continue
+            primary_idx = valid_indices[0]
             primary = items[primary_idx]
-            for dup_idx in group[1:]:
-                if not isinstance(dup_idx, int) or dup_idx < 0 or dup_idx >= len(items):
-                    continue
-                if dup_idx == primary_idx:
-                    continue
+            for dup_idx in valid_indices[1:]:
                 dup = items[dup_idx]
                 # Merge comments/content from the duplicate into the primary
                 if dup.content:

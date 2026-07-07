@@ -458,6 +458,12 @@ class WebhookNotifier:
             "all_items": all_items_count,
             "result": "success",
             "timestamp": str(int(datetime.now(timezone.utc).timestamp())),
+            # GitHub Pages URL of today's published summary (Jekyll default
+            # date permalink), used by Bark's "url" field for click-through
+            "post_url": (
+                "https://heng4099.github.io/Horizon/"
+                f"{date[:4]}/{date[5:7]}/{date[8:10]}/summary-{lang}.html"
+            ),
         }
 
         if self._can_use_feishu_collapsible():
@@ -773,5 +779,7 @@ class WebhookNotifier:
                 "message_title": "Horizon generation failed",
                 "message_kind": "failure",
                 "summary": f"generation failed: {error_message}",
+                # On failure, click-through goes to the Actions log instead
+                "post_url": "https://github.com/Heng4099/Horizon/actions",
             }
         )
