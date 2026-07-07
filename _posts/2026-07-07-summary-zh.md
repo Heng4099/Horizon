@@ -5,349 +5,366 @@ date: 2026-07-07
 lang: zh
 ---
 
-> 从 32 条内容中筛选出 14 条重要资讯。
+> 从 45 条内容中筛选出 15 条重要资讯。
 
 ---
 
-1. [ThinkingCap 优化 Qwen3.6-27B 效率](#item-1) ⭐️ 8.0/10
-2. [Pocket TTS 仅需 5 秒音频即可克隆声音](#item-2) ⭐️ 8.0/10
-3. [神话级 AI 两年内可在消费级硬件运行](#item-3) ⭐️ 8.0/10
-4. [腾讯发布 Hy3 开源模型](#item-4) ⭐️ 8.0/10
-5. [填充速度：本地大语言模型 ROI 中被低估的因素](#item-5) ⭐️ 8.0/10
-6. [Elm 迈向 1.0，兼容 AI 工具](#item-6) ⭐️ 7.0/10
-7. [Hugging Face 发布 LeRobot v0.6.0](#item-7) ⭐️ 7.0/10
-8. [Hugging Face 详解 PRX 数据策略](#item-8) ⭐️ 7.0/10
-9. [sqlite-utils 4.0rc3 发布新功能](#item-9) ⭐️ 7.0/10
-10. [Gemma 4 12B 意外创建 WebGL 保龄球游戏](#item-10) ⭐️ 7.0/10
-11. [Sberbank 发布支持 GGUF 的 GigaChat3.5 模型](#item-11) ⭐️ 7.0/10
-12. [4x 16GB 家庭实验室设置](#item-12) ⭐️ 7.0/10
-13. [开发者对本地 AI 编程助手性能感到沮丧](#item-13) ⭐️ 7.0/10
-14. [REAP 剪枝 DeepSeek 在 Ascent GX10 上实现长上下文一致性](#item-14) ⭐️ 7.0/10
+1. [Ternlight：7MB 浏览器嵌入模型](#item-1) ⭐️ 8.0/10
+2. [语言模型中的全局工作空间](#item-2) ⭐️ 8.0/10
+3. [AI 时代编程学习仍有价值](#item-3) ⭐️ 8.0/10
+4. [LeRobot v0.6.0：想象、评估、改进](#item-4) ⭐️ 8.0/10
+5. [AI4S 转向自主发现](#item-5) ⭐️ 8.0/10
+6. [极简方案刷新扩散模型推理纪录](#item-6) ⭐️ 8.0/10
+7. [Kyutai 的 Pocket TTS：5 秒 CPU 语音克隆](#item-7) ⭐️ 8.0/10
+8. [HOLA：海马体线性注意力模型](#item-8) ⭐️ 8.0/10
+9. [俄罗斯银行发布支持 GGUF 的 GigaChat3.5](#item-9) ⭐️ 8.0/10
+10. [OfficeCLI：AI 代理办公套件](#item-10) ⭐️ 7.0/10
+11. [Hugging Face 详细介绍 PRX 数据策略](#item-11) ⭐️ 7.0/10
+12. [腾讯发布 Hy3 MoE 模型](#item-12) ⭐️ 7.0/10
+13. [首个空间原生具身视觉模型开源](#item-13) ⭐️ 7.0/10
+14. [蚂蚁发布灵波深度 2.0 机器人视觉模型](#item-14) ⭐️ 7.0/10
+15. [中国企业为机器人开发类脑 AI 系统](#item-15) ⭐️ 7.0/10
 
 ---
 
 <a id="item-1"></a>
-## [ThinkingCap 优化 Qwen3.6-27B 效率](https://www.reddit.com/r/LocalLLaMA/comments/1up3mui/thinkingcapqwen3627b_same_accuracy_as_base_qwen36/) ⭐️ 8.0/10
+## [Ternlight：7MB 浏览器嵌入模型](https://ternlight-demo.vercel.app/) ⭐️ 8.0/10
 
-一种名为 ThinkingCap 的新优化技术已经开发出来，能够在保持 Qwen3.6-27B 准确率的同时，将计算需求减少约 50%。 这一突破显著提高了部署大型语言模型的效率，使其在保持性能的同时更加经济实惠，适用于各种应用场景。 该优化技术经过严格评估，涵盖多个领域，包括一般推理、多选题回答、对话、系统提示遵循、安全性、数学、代码和代理应用，并对结果进行了统计显著性测试。
+Ternlight 是一个 7MB 的嵌入模型，完全通过 WebAssembly(WASM)在浏览器中运行，无需外部依赖即可实现本地文本相似性比较。 这项技术支持隐私保护的搜索和本地 AI 处理，使开发者能够创建不依赖外部 API 或云服务进行文本相似性任务的应用程序。 该模型通过三元量化感知训练从 MiniLM 蒸馏而来，推理引擎用 Rust 编写并编译为 WASM SIMD。它为文本输入输出 384 维向量，支持余弦相似性比较。
 
-reddit · r/LocalLLaMA · /u/paf1138 · 7月6日 17:13
+hackernews · soycaporal · 7月6日 23:06 · [社区讨论](https://news.ycombinator.com/item?id=48811644)
 
-**背景**: Qwen3.6 是由阿里巴巴集团 Qwen 团队开发的大型语言模型系列，Qwen3.6-27B 是其变体之一。该模型具有 262,144 个 token 的默认上下文长度，专为利用扩展上下文处理复杂任务而设计。采样温度是大型语言模型中的关键超参数，控制响应中连贯性与创造力之间的平衡，Qwen 推荐的温度为 1.0。
+**背景**: WebAssembly(WASM)是一种低级二进制指令格式，旨在以接近原生的速度在浏览器中运行。嵌入模型将文本转换为捕获语义的数值向量，实现不依赖共享单词的相似性比较。量化是一种模型优化技术，通过降低精度来减少内存占用并提高推理速度，同时保持准确性。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/QwenLM/Qwen3.6">GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub</a></li>
-<li><a href="https://huggingface.co/Qwen/Qwen3.6-27B">Qwen/Qwen3.6-27B · Hugging Face</a></li>
+<li><a href="https://www.youtube.com/watch?v=cbB3QEwWMlA">Web Assembly ( WASM ) in 100 Seconds - YouTube</a></li>
+<li><a href="https://www.linkedin.com/pulse/webassembly-wasm-future-web-performance-beyond-thisuri-bandaranayake-lhchc">WebAssembly ( Wasm ): The Future of Web Performance Beyond...</a></li>
+<li><a href="https://grokipedia.com/page/Quantization_machine_learning">Quantization (machine learning)</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: Reddit 帖子显示初步积极反响，评论称'当然需要验证，但很有希望 :)'，表明人们对该技术对大型语言模型效率的潜在影响持谨慎乐观态度。
+**社区讨论**: 社区成员赞扬该项目在隐私保护搜索和本地 AI 处理方面的实际应用。一些建议添加演示触发按钮等 UI 改进，同时其他人讨论了与 DuckDB HNSW 搜索和离线搜索引擎等项目的集成可能性。整体情绪积极，开发者分享了实际用例和集成想法。
 
-**标签**: `#Model optimization`, `#Efficiency`, `#Qwen3.6`, `#LLM optimization`, `#Performance improvement`
+**标签**: `#AI embeddings`, `#browser AI`, `#WASM`, `#quantization`, `#local AI`
 
 ---
 
 <a id="item-2"></a>
-## [Pocket TTS 仅需 5 秒音频即可克隆声音](https://www.reddit.com/r/LocalLLaMA/comments/1up07mk/kyutais_pocket_tts_clones_a_voice_from_5_seconds/) ⭐️ 8.0/10
+## [语言模型中的全局工作空间](https://www.anthropic.com/research/global-workspace) ⭐️ 8.0/10
 
-Kyutai 的 Pocket TTS 引入了一种新颖的流式语言模型方法进行文本转语音，仅需 5 秒音频参考即可克隆任何声音，完全在 CPU 上运行并采用 MIT 许可。 这项技术允许在消费级硬件上实现零样本声音克隆，无需 GPU 要求，使开发者和需要克隆用户声音而无需微调或专用硬件的应用程序能够访问高级语音合成技术。 Pocket TTS 保持一致的延迟（RTF 0.69-0.76），无论文本长度如何，这与传统 TTS 模型根据输入大小具有不同性能的情况不同。它使用约 1 亿参数的流式语言模型，在 Kyutai 的 Mimi 神经编解码器上生成音频标记，然后解码为 24kHz 音频。
+Anthropic 发布了研究，探索语言模型如何维护全局工作空间，使早期 token 的信息能够影响序列中的未来预测。 理解这种全局工作空间机制对于改进 AI 内容创作至关重要，因为它揭示了模型如何处理和维持序列中的信息，这将显著影响提示工程和模型行为解释。 该研究考察了语言模型中的残差流如何使所有过去 token 的信息影响未来预测，而不仅仅是下一个 token，这是由于训练过程中对整个序列的损失进行求和/平均所致。
 
-reddit · r/LocalLLaMA · /u/gvij · 7月6日 15:14
+hackernews · in-silico · 7月6日 17:44 · [社区讨论](https://news.ycombinator.com/item?id=48808002)
 
-**背景**: 文本转语音（TTS）技术将书面文本转换为语音音频。传统 TTS 系统通常使用声学模型与声码器配对。大多数最近的 CPU 友好型 TTS 模型（如 Kokoro 和 Supertonic）需要预定义的声音集，无法克隆任意声音。流式语言模型方法代表了一种范式转变，将音频生成方式类似于语言模型逐个生成文本标记的方式。
+**背景**: 语言模型逐个处理 token，基于先前上下文生成预测。"全局工作空间"概念源于认知科学和神经科学，在脑科学中指代一种理论机制，能够整合来自不同专门系统的信息。在 AI 领域，这个工作空间指的是信息如何在序列的不同部分保持并影响预测。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/kyutai-labs/pocket-tts">GitHub - kyutai-labs/pocket-tts: A TTS that fits in your CPU (and pocket) · GitHub</a></li>
-<li><a href="https://grokipedia.com/page/Pocket_TTS">Pocket TTS</a></li>
-<li><a href="https://www.emergentmind.com/topics/utmos">UTMOS Speech Quality Metric</a></li>
+<li><a href="https://www.anthropic.com/research/global-workspace">A global workspace in language models \ Anthropic</a></li>
+<li><a href="https://transformer-circuits.pub/2026/workspace/index.html">Verbalizable Representations Form a Global Workspace in Language ...</a></li>
+<li><a href="https://biodivert.com/ai-tooling/a-global-workspace-in-language-models/">A Global Workspace In Language Models - BioDivert</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: Reddit 帖子包含将 Pocket TTS 与其他 CPU TTS 模型进行详细基准比较的内容，指出虽然 Pocket TTS 是最慢的，但其独特的声音克隆能力使其成为'该领域最有趣的模型'。作者邀请社区对 Pocket TTS 在不同声音类型（特别是带口音的英语、非英语语言和唱歌声音）上的表现提供反馈。
+**社区讨论**: 社区成员讨论了 LLM 中的残差流如何被训练以预测整个序列中的未来 token，而不仅仅是下一个。一位用户质疑了与意识的比较，解释说 J-Space 概念更多是关于跨上下文共享的抽象推理子空间，而非直接的人类认知平行。
 
-**标签**: `#text-to-speech`, `#AI audio`, `#voice cloning`, `#benchmarking`, `#streaming models`
+**标签**: `#language-models`, `#AI-research`, `#model-architecture`, `#prompt-engineering`, `#anthropic`
 
 ---
 
 <a id="item-3"></a>
-## [神话级 AI 两年内可在消费级硬件运行](https://www.reddit.com/r/LocalLLaMA/comments/1uoij3s/if_trends_hold_mythosclass_capability_may_be/) ⭐️ 8.0/10
+## [AI 时代编程学习仍有价值](https://stevekrouse.com/learn-to-code) ⭐️ 8.0/10
 
-分析表明，当前 AI 模型开发中的效率趋势可能使神话级 AI 能力在大约两年内能够在高端消费级硬件上运行，这基于模型优化和量化技术的发展轨迹。 这种先进 AI 能力的民主化将显著降低开发人员和研究人员的使用门槛，可能加速各行业的创新，并使强大的 AI 工具超越大型企业和研究机构，惠及更广泛的受众。 分析指出，GGUF 和 EXL2 等量化格式是使大模型能够在有限 VRAM 上运行的关键技术，同时注意到训练计算效率每年大约提高 3.0 倍，这表明模型优化呈指数级进步。
+文章认为尽管有 AI 进步，学习编程仍然有价值，编程正在从手动编码演变为监督 AI 工具。 这一讨论探讨了 AI 时代编程职业的未来，帮助开发者理解他们的角色将如何转变，以及哪些技能将继续保持重要性。 评论显示，虽然 LLM 可以生成代码，但人类程序员越来越需要监督和验证 AI 生成的代码，这创造了一个新的范式，即编程技能会演变而非过时。
 
-reddit · r/LocalLLaMA · /u/PetersOdyssey · 7月6日 00:40
+hackernews · stevekrouse · 7月6日 20:59 · [社区讨论](https://news.ycombinator.com/item?id=48810439)
 
-**背景**: 神话级 AI 模型代表能够处理复杂任务（如持续推理和智能代理编程）的高级人工智能层次。LocalLLaMA 社区专注于优化开源权重模型以实现本地运行，努力在云环境之外使强大的 AI 更加普及。当前趋势显示，较小的模型（70 亿参数）能够实现以前只有更大模型（700 亿参数）才具备的能力，这表明 AI 开发中效率的显著提升。
+**背景**: 大型语言模型（如 GPT-4）在生成多种编程语言的代码方面展示了令人印象深刻的能力。这些 AI 工具可以创建 SQL 查询、编写 shell 命令并协助网站设计。然而，它们引入了'监督悖论'——AI 生成代码的速度越快，人类工程师就必须花费更多时间仔细检查，以确保代码不会破坏生产系统。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://aitinkerers.org/technologies/localllama">LocalLlama Projects</a></li>
-<li><a href="https://llm-stats.com/ai-trends">AI Trends (July 2026) — AI Trend Analysis, LLM Statistics & Industry Insights</a></li>
-<li><a href="https://epoch.ai/trends">Trends in Artificial Intelligence | Epoch AI</a></li>
+<li><a href="https://aws.amazon.com/what-is/large-language-model/">What is LLM? - Large Language Models Explained - AWS</a></li>
+<li><a href="https://www.linkedin.com/pulse/supervision-paradox-why-shipping-ai-generated-code-still-hyajf">AI Code Supervision Paradox: Solving the Validation Crisis</a></li>
+<li><a href="https://medium.com/@josh-hall/working-with-lennie-the-reality-of-ai-code-supervision-bb49cbb7539e">The Reality of AI Code Supervision | Joshua Hall | Medium</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 这篇 Reddit 帖子引发了大量社区讨论，对于可行性时间表存在不同观点，一些专家同意两年预测，而另一些则对硬件能力是否能足够快地进步以支持在消费设备上运行如此复杂的模型表示怀疑。
+**社区讨论**: 社区讨论呈现了多种观点，有人将编程比作'管道工程'而非创意表达，有人将其与数学类比——尽管有计算器，基本技能仍然必要，资深程序员指出他们的角色越来越像'监督模型，就像对待初级贡献者'。一些开发者主动选择不使用 LLM 辅助来构建项目，以保持他们的编程技能。
 
-**标签**: `#AI-hardware`, `#Model-efficiency`, `#Consumer-AI`, `#Future-trends`, `#LocalLLaMA`
+**标签**: `#AI and programming`, `#future of work`, `#coding education`, `#LLM impact`, `#tech career`
 
 ---
 
 <a id="item-4"></a>
-## [腾讯发布 Hy3 开源模型](https://www.reddit.com/r/LocalLLaMA/comments/1uoozt4/new_open_model_from_tencent_hy_hy3_295b_total_21b/) ⭐️ 8.0/10
+## [LeRobot v0.6.0：想象、评估、改进](https://huggingface.co/blog/lerobot-release-v060) ⭐️ 8.0/10
 
-腾讯发布了 Hy3，一个拥有 295B 总参数但仅 21B 活跃参数的开源模型，并从限制性的社区许可证切换到了 Apache 2.0 许可证。 这次发布具有重要意义，因为 Apache 2.0 许可证使该模型具有商业可行性，允许开发者和企业在商业应用中使用它，而无需受先前许可证的限制。 该模型可能采用了专家混合（MoE）架构，这解释了为什么在推理过程中只有 295B 总参数中的 21B 是活跃的，从而显著降低了计算需求。
-
-reddit · r/LocalLLaMA · /u/Nunki08 · 7月6日 06:09
-
-**背景**: 专家混合（MoE）是一种神经网络架构，它通过仅选择性地激活给定任务所需的特定专家而非整个网络，使大规模模型能够降低计算成本。Apache 2.0 许可证是一个宽松的开源许可证，允许用户自由使用、修改和分发软件，甚至用于商业目的，只要他们包含原始许可证和变更通知即可。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.ibm.com/think/topics/mixture-of-experts">What is mixture of experts? | IBM</a></li>
-<li><a href="https://huggingface.co/blog/moe">Mixture of Experts Explained</a></li>
-<li><a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License , Version 2 . 0 | Apache Software Foundation</a></li>
-
-</ul>
-</details>
-
-**社区讨论**: Reddit 帖子提到这是 Hy3 的非预览版本，并强调许可证从限制性的社区许可证（不允许在韩国、英国和欧盟使用）更改为 Apache 2.0，这对开源 AI 领域的发展具有重要意义。
-
-**标签**: `#Open Source`, `#Large Language Models`, `#Tencent`, `#Apache 2.0`, `#Mixture of Experts`
-
----
-
-<a id="item-5"></a>
-## [填充速度：本地大语言模型 ROI 中被低估的因素](https://www.reddit.com/r/LocalLLaMA/comments/1up9054/prefill_vs_decoding_and_local_llm_roi_is_prefill/) ⭐️ 8.0/10
-
-作者指出在本地大语言模型设置中，填充速度比解码速度快 50 倍，但在 ROI 计算中很少被考虑，尽管它对硬件效率有重大影响。 理解填充性能的影响对于准确计算本地运行大语言模型的 ROI 至关重要，因为它比之前承认的更影响硬件利用率和成本效益。 在提供的例子中，填充吞吐量达到每秒 3000 个 token，而解码仅为每秒 60 个 token，填充成本约为每百万 token 1.40 美元，而输出 token 成本为每百万 token 4.40 美元。
-
-reddit · r/LocalLLaMA · /u/GabryIta · 7月6日 20:20
-
-**背景**: 大语言模型推理发生在两个不同的阶段：填充阶段，模型并行处理输入 token 以准备响应生成；解码阶段，模型顺序生成输出 token。填充阶段通常比解码阶段每个 token 更快，这就是为什么商业 API 对输入 token 收费较低。推测解码和 4 位量化是可以在不牺牲质量的情况下提高解码性能的优化技术。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://medium.com/@sailakkshmiallada/understanding-the-two-key-stages-of-llm-inference-prefill-and-decode-29ec2b468114">Understanding the Two Key Stages of LLM Inference: Prefill and Decode(Part-1) | by Saiii | Medium</a></li>
-<li><a href="https://huggingface.co/blog/tngtech/llm-performance-prefill-decode-concurrent-requests">Prefill and Decode for Concurrent Requests - Optimizing LLM Performance</a></li>
-<li><a href="https://redis.io/blog/prefill-vs-decode/">Prefill vs Decode: LLM Inference Phases Explained</a></li>
-
-</ul>
-</details>
-
-**社区讨论**: Reddit 线程包含来自不同视角的实质性技术评论，一些用户同意填充被低估，而另一些用户指出实际输入/输出 token 比率可能与提出的假设场景有很大不同。
-
-**标签**: `#local-llm`, `#roi`, `#prefill`, `#decoding`, `#hardware-optimization`
-
----
-
-<a id="item-6"></a>
-## [Elm 迈向 1.0，兼容 AI 工具](https://elm-lang.org/news/faster-builds) ⭐️ 7.0/10
-
-Elm 正在向 1.0 版本迈进，专注于性能改进，社区正在强调其与 Claude 等 AI 开发工具的独特兼容性。 这很重要，因为 Elm 的简单性、稳定性和有主见的架构使其特别适合 AI 辅助开发，可能会增加使用大型语言模型的开发者对其的采用率。 讨论显示，Elm 的静态类型系统和"无运行时异常"方法为 AI 代码生成提供了可靠的基础，而其函数式范式与 LLM 处理和生成代码的方式高度契合。
-
-hackernews · wolfadex · 7月6日 11:47 · [社区讨论](https://news.ycombinator.com/item?id=48803364)
-
-**背景**: Elm 是一种纯函数式编程语言，专为创建可靠的基于 Web 浏览器的图形用户界面而设计。它编译为 JavaScript，并通过编译器的静态类型检查强调可用性、性能和健壮性。与许多编程语言不同，Elm 宣传"在实践中没有运行时异常"，这得益于其严格的类型系统。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Elm_(programming_language)">Elm (programming language)</a></li>
-<li><a href="https://elm-lang.org/">Elm - delightful language for reliable web applications</a></li>
-<li><a href="https://www.codeconvert.ai/elm-code-generator">Free Elm Code Generator — AI -Powered | CodeConvert AI</a></li>
-
-</ul>
-</details>
-
-**社区讨论**: 社区讨论揭示了人们对 Elm 和 AI 工具看法的转变，开发者最初担心 LLM 可能会扼杀 Elm，但现在认为由于 Elm 的简单性和稳定性，它们可能会增加其采用率。还有人提到 Elm 与 Claude 的出色兼容性，以及对 JavaScript 集成限制的持续担忧。
-
-**标签**: `#programming-languages`, `#elm`, `#ai-tools`, `#functional-programming`, `#developer-tools`
-
----
-
-<a id="item-7"></a>
-## [Hugging Face 发布 LeRobot v0.6.0](https://huggingface.co/blog/lerobot-release-v060) ⭐️ 7.0/10
-
-Hugging Face 发布了 LeRobot v0.6.0，引入了'想象、评估、改进'框架，使 AI 驱动的机器人应用能够预测未来状态并持续改进其决策过程。 这个框架通过虚拟迭代而非重复的现实世界试验来实现持续改进，代表了机器人自动化的重要进步，可能加速实用 AI 机器人应用的开发。 LeRobot v0.6.0 的框架允许每个组件在训练过程中学习想象未来，采用不同方法保持这种想象的计算效率，并引用 VLA-JEPA 技术进行高效状态预测。
+LeRobot v0.6.0 引入了新的'想象、评估、改进'方法论，使机器人能够将想象未来状态作为其训练过程的一部分，每个模型采用不同的方法来实现可负担的想象能力。 这次更新代表了人工智能驱动机器人的重要进展，通过提供结构化的机器人行为改进方法，使先进的机器人功能对开发人员和研究人员更加易于访问。 该框架包含预训练模型、人工收集的演示数据集和模拟环境，特别提到了 VLA-JEPA 架构，它在训练过程中学习想象未来。
 
 rss · Hugging Face Blog · 7月7日 00:00
 
-**背景**: LeRobot 是 Hugging Face 的开源机器人库，旨在使机器人 AI 开发更加便捷。它提供数据收集、训练和可视化工具，可通过 Robot 接口实现。'想象、评估、改进'框架遵循机器人 AI 的趋势，系统预测未来状态以做出更好的决策，类似于 Nvidia 的 ASPIRE 和 RISE 等框架采用的方法，这些方法已显著提高了任务成功率。
+**背景**: LeRobot 是 Hugging Face 的开源机器人框架，旨在简化机器人系统的数据收集、训练和评估。该框架提供标准化格式和工具，使研究人员和开发人员能够更高效地构建机器人 AI。Hugging Face 计划在价格合理且功能强大的机器人上扩展对现实世界机器人应用的支持。
 
 <details><summary>参考链接</summary>
 <ul>
 <li><a href="https://huggingface.co/blog/lerobot-release-v060">LeRobot v0.6.0: Imagine , Evaluate , Improve</a></li>
-<li><a href="https://github.com/huggingface/lerobot">GitHub - huggingface/ lerobot : LeRobot : Making AI for Robotics...</a></li>
-<li><a href="https://aigazine.com/industry/rise-robot-framework-boosts-task-success-rates-by-35-using-aidriven-imagination--s">RISE Robot Framework Boosts Task Success Rates by 35% Using...</a></li>
+<li><a href="https://github.com/huggingface/lerobot">GitHub - huggingface/lerobot: LeRobot: Making AI for Robotics ...</a></li>
+<li><a href="https://claru.ai/formats/lerobot-format">LeRobot Format for Robotics Data | Claru</a></li>
 
 </ul>
 </details>
 
-**标签**: `#robotics`, `#AI-frameworks`, `#Hugging-Face`, `#automation`, `#machine-learning`
+**标签**: `#robotics`, `#AI applications`, `#Hugging Face`, `#open-source`, `#machine learning`
+
+---
+
+<a id="item-5"></a>
+## [AI4S 转向自主发现](https://www.qbitai.com/2026/07/445067.html) ⭐️ 8.0/10
+
+AI4S 正从辅助计算转向自主发现，标志着科研方法的范式转变。 这一转变可能加速所有领域的科学发现，重塑全球科研格局，并使中国成为 AI 驱动科学创新的领导者。 AI 现在正在生成假设、设计实验、分析数据，并在地球和气候科学等领域用高速模拟器取代计算密集型模拟。
+
+rss · 量子位 · 7月7日 03:24
+
+**背景**: AI for Science (AI4S)代表了 AI 创新与 AI 驱动科学发现的融合。它利用 AI 在模式识别、复杂系统建模和大规模数据分析方面的能力，加速科学领域的发现。这标志着从传统计算方法向更自主的科学发现过程的重大转变。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.nature.com/articles/d42473-025-00161-3">AI for Science 2025 - Nature</a></li>
+<li><a href="https://hai.stanford.edu/news/how-ai-is-transforming-scientific-discovery-while-keeping-humans-at-the-center">How AI is Transforming Scientific Discovery While Keeping ...</a></li>
+<li><a href="https://arxiv.org/html/2510.09901v1">Autonomous Agents for Scientific Discovery: Orchestrating Scientists, Language, Code, and Physics</a></li>
+
+</ul>
+</details>
+
+**标签**: `#AI4S`, `#Scientific Discovery`, `#China AI Strategy`, `#Research Transformation`, `#Autonomous AI`
+
+---
+
+<a id="item-6"></a>
+## [极简方案刷新扩散模型推理纪录](https://www.qbitai.com/2026/07/444721.html) ⭐️ 8.0/10
+
+阿里巴巴和清华大学的研究人员开发了一种极简方案，显著提高了扩散模型的推理速度，在领域内创造了新纪录。 这一突破通过降低计算需求和提高效率，使扩散模型在实际应用中更加实用，可能加速 AI 生成内容的创建过程。 该研究论文被 ICML（国际机器学习会议）评为杰出论文，这是机器学习领域的三大顶级会议之一，凸显了其在领域内的重要性。
+
+rss · 量子位 · 7月6日 10:33
+
+**背景**: 扩散模型是一类生成模型，学习逆转向数据添加噪声的扩散过程，实现高质量图像生成。它们包含前向扩散过程和反向采样过程。这些模型广泛应用于计算机视觉任务，如图像生成、去噪和超分辨率。然而，它们的推理过程计算成本高，需要多次迭代生成输出，这限制了它们的实际应用。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Diffusion_model">Diffusion model</a></li>
+<li><a href="https://www.ibm.com/think/topics/diffusion-models">What are Diffusion Models? | IBM</a></li>
+<li><a href="https://en.wikipedia.org/wiki/ICML">ICML</a></li>
+
+</ul>
+</details>
+
+**标签**: `#diffusion-models`, `#inference-optimization`, `#icml`, `#ai-research`, `#generative-ai`
+
+---
+
+<a id="item-7"></a>
+## [Kyutai 的 Pocket TTS：5 秒 CPU 语音克隆](https://www.reddit.com/r/LocalLLaMA/comments/1up07mk/kyutais_pocket_tts_clones_a_voice_from_5_seconds/) ⭐️ 8.0/10
+
+Kyutai 的 Pocket TTS 引入了一种流式语言模型方法进行文本转语音，只需 5 秒音频参考就能克隆任何人的声音，完全在 CPU 上运行，且无论文本长度如何，延迟都保持一致。 这一突破使开发者能够在消费级硬件上实现零样本语音克隆，无需 GPU 要求，为开发者和创作者普及高质量语音合成，同时保持 MIT 许可用于商业用途。 Pocket TTS 使用约 1 亿参数的流式语言模型，在 Kyutai 的 Mimi 神经编解码器上生成音频令牌，无论文本长度如何，都能实现 0.69-0.76 的一致 RTF，在流式能力上优于传统 TTS 架构，但在速度上目前落后于 Kokoro 和 Supertonic 等替代方案。
+
+reddit · r/LocalLLaMA · /u/gvij · 7月6日 15:14
+
+**背景**: 文本转语音(TTS)技术将书面文本转换为语音，传统系统通常使用声学模型与声码器相结合。语音克隆允许 TTS 系统模仿特定声音，通常需要微调或大量计算资源。流式语言模型是一种较新的方法，能够增量生成输出，实现实时应用，且无论输入大小如何，延迟都保持一致。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://huggingface.co/kyutai/mimi">kyutai/mimi · Hugging Face</a></li>
+<li><a href="https://huggingface.co/docs/transformers/model_doc/mimi">Mimi · Hugging Face</a></li>
+<li><a href="https://www.emergentmind.com/topics/ualm-gen">UALM-Gen: Unified Text-to- Audio Model</a></li>
+
+</ul>
+</details>
+
+**社区讨论**: Reddit 帖子包含将 Pocket TTS 与其他 CPU TTS 模型(Kokoro、Supertonic、Inflect-Nano)的基准测试结果，作者指出尽管速度最慢，但由于其独特的语音克隆能力，Pocket TTS 仍然是最有趣的模型。社区特别感兴趣于使用不同类型声音进行语音克隆的实地测试。
+
+**标签**: `#text-to-speech`, `#voice-cloning`, `#AI-models`, `#streaming-LLM`, `#benchmarking`
 
 ---
 
 <a id="item-8"></a>
-## [Hugging Face 详解 PRX 数据策略](https://huggingface.co/blog/Photoroom/prx-part4-data) ⭐️ 7.0/10
+## [HOLA：海马体线性注意力模型](https://www.reddit.com/r/LocalLLaMA/comments/1upjq05/a_hippocampus_for_linear_attention_an_exact/) ⭐️ 8.0/10
 
-Hugging Face 发布了 PRX 系列的第四部分，专门针对其 AI 项目的数据策略。该文章提供了领先 AI 平台如何为机器学习项目构建数据操作的见解。 数据策略对 AI 应用至关重要，从 Hugging Face 等成熟组织获取观点可以为 AI 创作者和顾问提供实用指导。这种透明度有助于更广泛的 AI 社区了解大规模 AI 项目中的数据管理最佳实践。 根据搜索结果，PRX 模型是一个文本到图像模型，可在 32 个 GPU 上以 1024 像素分辨率在 10 天内完成训练。数据策略可能涵盖数据收集、预处理、质量控制以及为高效训练进行优化等方面。
+研究人员开发了 HOLA（海马体线性注意力），一种新颖的方法，将线性注意力与受神经科学互补学习系统启发的精确内存缓存相结合，以解决语言模型中的信息丢失问题。 HOLA 解决了当前语言模型中的一个关键限制，防止在长上下文中丢失重要信息，可能需要长期记忆和上下文保留的任务的性能提升。 HOLA 将 delta-rule 状态保持为压缩内存，同时添加有界精确 KV 缓存，使用解耦的 RMSNorm-gamma 缓存读取进行精确检索而非软平均，并在 Wikitext 困惑度（-16.1%）和 LAMBADA 困惑度测试中取得卓越性能。
 
-rss · Hugging Face Blog · 7月6日 15:30
+reddit · r/LocalLLaMA · /u/Thrumpwart · 7月7日 03:46
 
-**背景**: Hugging Face 是领先的开源 AI 平台和社区，为机器学习开发者提供工具和资源。PRX 项目似乎是 Hugging Face 和 Photoroom 之间的合作，专注于开发先进的文本到图像 AI 模型。数据策略是 AI 开发的关键组成部分，涵盖数据如何被收集、管理和用于训练有效模型。开源 AI 模型和策略有助于加速整个 AI 社区的创新发展，让他人能够从已建立的方法中学习和构建。
+**背景**: 线性注意力和状态空间语言模型将输入序列压缩为固定大小的循环状态，以 O(1)内存复杂度为代价实现信息损失。这种压缩导致当多个键值关联竞争时，较早的事实被覆盖，导致长上下文任务性能下降。该方法受神经科学互补学习系统的启发，该系统表明海马体和大脑皮层协同工作以形成和存储记忆。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://huggingface.co/spaces/stabilityai/TripoSR">TripoSR - a Hugging Face Space by stabilityai</a></li>
-<li><a href="https://www.linkedin.com/posts/isaac-kargar_prx-ai-llm-activity-7400458657877975041-RR2J">Photoroom just open-sourced their # PRX text-to-image model with...</a></li>
-<li><a href="https://aianswergrowth.com/ai-platforms-why-growth-strategies-matter-now/">AI Platforms : Why & Growth Strategies Matter Now - AI Answer Growth</a></li>
+<li><a href="https://haileyschoelkopf.github.io/blog/2024/linear-attn/">Linear Attention Fundamentals | Hailey Schoelkopf</a></li>
+<li><a href="https://arxiv.org/html/2607.02303">A Hippocampus for Linear Attention An Exact Memory for What the...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Attention_(machine_learning)">Attention (machine learning) - Wikipedia</a></li>
 
 </ul>
 </details>
 
-**标签**: `#data strategy`, `#AI`, `#machine learning`, `#Hugging Face`, `#PRX`
+**标签**: `#attention-mechanisms`, `#language-models`, `#memory-systems`, `#neural-networks`, `#AI-research`
 
 ---
 
 <a id="item-9"></a>
-## [sqlite-utils 4.0rc3 发布新功能](https://simonwillison.net/2026/Jul/6/sqlite-utils/#atom-everything) ⭐️ 7.0/10
+## [俄罗斯银行发布支持 GGUF 的 GigaChat3.5](https://www.reddit.com/r/LocalLLaMA/comments/1uotkm7/new_model_gigachat35432ba28b_with_day0_gguf/) ⭐️ 8.0/10
 
-sqlite-utils 4.0rc3 引入了复合外键支持和遵循 SQLite 约定的大小写不敏感列匹配功能，同时对 table.foreign_keys API 进行了破坏性更改。 此次发布很重要，因为它通过复合外键添加了重要的数据库关系功能，并通过大小写不敏感匹配提高了可用性，但破坏性 API 更改需要现有用户注意。 复合外键功能需要对 table.foreign_keys API 进行微妙的破坏性更改，这就是为什么它需要包含在 4.0 稳定版本中。大小写不敏感列匹配的实现同时影响了代码库的多个部分。
-
-rss · Simon Willison · 7月6日 05:40
-
-**背景**: sqlite-utils 是一个用于创建和操作 SQLite 数据库的 Python 库和命令行工具。SQLite 中的外键是强制表之间引用完整性的约束，要求列中的值与另一个表的列中的值匹配。SQLite 的外键支持在 3.6.19 版本中添加，并且默认情况下处于禁用状态以保持向后兼容性。SQLite 中的大小写不敏感匹配可以通过在表创建期间使用 COLLATE NOCASE 子句或通过 PRAGMA 设置来实现。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://sqlite-utils.datasette.io/en/3.14/python-api.html">sqlite _ utils Python library — sqlite - utils 3.14 documentation</a></li>
-<li><a href="https://www.sqlite.org/foreignkeys.html">SQLite Foreign Key Support</a></li>
-<li><a href="https://sqlite.work/sqlite-index-usage-with-case-insensitivity-and-expression-based-queries/">SQLite Index Usage with Case Insensitivity and... - SQLite Help Docs</a></li>
-
-</ul>
-</details>
-
-**标签**: `#sqlite`, `#python`, `#database`, `#release`, `#ai-tools`
-
----
-
-<a id="item-10"></a>
-## [Gemma 4 12B 意外创建 WebGL 保龄球游戏](https://www.reddit.com/r/LocalLLaMA/comments/1up78iv/i_told_gemma_4_12b_q8_0_no_cache_quant_to_write_a/) ⭐️ 7.0/10
-
-一名用户测试了 Gemma 4 12B 使用 Q8_0 量化编写完整的 3D 保龄球模拟器的能力，尽管结果有错误，但作为一次性生成，它的表现超出了预期。 这展示了当前 AI 模型的实际编程能力，表明即使不是专门为编程设计的模型也能为复杂的 3D 图形编程等任务生成功能性代码。 用户使用 opencode 作为工具链，并指出模型犯了一些工具调用错误但能快速自我纠正；实验在接近无损的 Q8_0 量化下进行，这种量化方法比低精度量化能保留更多模型质量。
-
-reddit · r/LocalLLaMA · /u/_TheWolfOfWalmart_ · 7月6日 19:16
-
-**背景**: Gemma 4 12B 是谷歌的多模态 AI 模型，专为在笔记本电脑上提供高性能智能而设计，结合了移动优先的效率和高级推理能力。Q8_0 量化是一种通过 8 位整数表示权重来减小模型大小同时保持合理准确性的方法。WebGL 是一个 JavaScript API，用于在 Web 浏览器中渲染交互式 3D 图形，无需插件，基于 OpenGL ES。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/">Introducing Gemma 4 12 B</a></li>
-<li><a href="https://huggingface.co/google/gemma-4-12B">google/ gemma - 4 - 12 B · Hugging Face</a></li>
-<li><a href="https://ai.google.dev/gemma/docs/core/model_card_4">Gemma 4 model card | Google AI for Developers</a></li>
-<li><a href="https://en.wikipedia.org/wiki/WebGL">WebGL - Wikipedia</a></li>
-<li><a href="https://www.khronos.org/webgl/">WebGL - Low-Level 3D Graphics API Based on OpenGL ES</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">WebGL : 2D and 3D graphics for the web - Web APIs | MDN</a></li>
-
-</ul>
-</details>
-
-**标签**: `#AI coding`, `#Gemma model`, `#WebGL`, `#3D graphics`, `#Development tools`
-
----
-
-<a id="item-11"></a>
-## [Sberbank 发布支持 GGUF 的 GigaChat3.5 模型](https://www.reddit.com/r/LocalLLaMA/comments/1uotkm7/new_model_gigachat35432ba28b_with_day0_gguf/) ⭐️ 7.0/10
-
-Sberbank 发布了 GigaChat3.5-432B-A28B，这是一个新的大型语言模型，立即提供 GGUF 格式支持，允许从第一天起就进行高效的本地部署。 这次发布具有重要意义，因为它立即提供了一个强大的俄语语言模型的 GGUF 格式，使本地爱好者能够在自己的硬件上运行先进的 AI 模型，而无需依赖云服务。 该模型有三个版本可用：基础版、常规版和 GGUF 版。虽然 GGUF 版本尚未进入主分支，但用户可以从 llama.cpp 仓库中提供的拉取请求构建它。
+俄罗斯银行发布了 GigaChat3.5-432B-A28B，这是一款新的大型语言模型，并立即提供了 GGUF 格式支持，用于本地推理。 这具有重要意义，因为它为 AI 创作者提供了一个可以在本地运行而无需依赖云服务的强大模型，而第 0 天 GGUF 可用性对本地部署社区尤其有价值。 该模型有三个版本可用：基础版、标准版和 GGUF 版，GGUF 版本可通过特定拉取请求访问，因为它尚未进入主分支。
 
 reddit · r/LocalLLaMA · /u/unbannedfornothing · 7月6日 10:34
 
-**背景**: GGUF 是一种为使用 GGML 进行高效模型推理而设计的文件格式，支持从 2 位到 8 位的各种量化选项。llama.cpp 是用 C/C++编写的开源推理引擎，已成为本地 LLM 推理的事实标准。GigaChat 模型采用自定义的专家混合（MoE）架构，通过在推理过程中仅激活参数子集来实现高效的参数利用。
+**背景**: GGUF 是一种用于通过 GGML 存储模型以进行推理的文件格式，支持 2-8 位的各种量化选项。llama.cpp 是一个开源库，用于执行大型语言模型的推理，被认为是本地推理工具的事实标准。本地推理允许直接在边缘设备或本地服务器上运行模型，而无需依赖基于云的处理。
 
 <details><summary>参考链接</summary>
 <ul>
 <li><a href="https://huggingface.co/docs/diffusers/quantization/gguf">GGUF · Hugging Face</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Llama.cpp">Llama.cpp</a></li>
-<li><a href="https://arxiv.org/html/2506.09440v1">GigaChat Family: Efficient Russian Language Modeling Through...</a></li>
+<li><a href="https://grokipedia.com/page/Local_inference">Local inference</a></li>
 
 </ul>
 </details>
 
-**标签**: `#Large Language Models`, `#GGUF`, `#Local Deployment`, `#Model Release`, `#Sberbank`
+**标签**: `#large-language-models`, `#gguf`, `#sberbank`, `#local-deployment`, `#model-release`
+
+---
+
+<a id="item-10"></a>
+## [OfficeCLI：AI 代理办公套件](https://github.com/iOfficeAI/OfficeCLI) ⭐️ 7.0/10
+
+OfficeCLI 是一个开源命令行工具，使 AI 代理能够读取、编辑和自动化 Microsoft Word、Excel 和 PowerPoint 文件，无需安装 Microsoft Office。 这款工具弥合了 AI 能力和文档处理之间的差距，使 AI 代理能够处理广泛使用的 Office 格式，这可以大大提高 AI 增强型内容创作者的生产力并自动化文档工作流程。 OfficeCLI 作为单个二进制文件运行，无依赖项，支持 CI/CD 环境和 Docker 容器的无头操作，并能将 Office 文件渲染为 HTML、SVG、截图和实时浏览器预览。
+
+hackernews · maxloh · 7月6日 16:47 · [社区讨论](https://news.ycombinator.com/item?id=48807225)
+
+**背景**: AI 代理越来越需要与文档格式交互，但 Microsoft Office 文件传统上需要安装完整的 Office 套件。这为自动化工作流程和服务器环境带来了挑战。命令行界面文档处理已成为无头文档操作的解决方案，使 AI 系统能够以编程方式与 Office 文档交互，无需图形界面。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://github.com/iOfficeAI/OfficeCLI">GitHub - iOfficeAI/OfficeCLI: OfficeCLI is the first and best Office suite...</a></li>
+<li><a href="https://www.scriptbyai.com/office-cli-ai-agent/">OfficeCLI: Create & Edit Word, Excel, and PowerPoint Files with AI...</a></li>
+<li><a href="https://office-cli.onl/">Office CLI</a></li>
+
+</ul>
+</details>
+
+**社区讨论**: 社区讨论包括替代方案如 SmallDocs，关于 ECMA 376 标准的合规性问题，"Office"一词的商标问题，以及企业文档生成的挑战，包括验证和归因问题。
+
+**标签**: `#AI-agents`, `#document-processing`, `#office-automation`, `#open-source`, `#productivity-tools`
+
+---
+
+<a id="item-11"></a>
+## [Hugging Face 详细介绍 PRX 数据策略](https://huggingface.co/blog/Photoroom/prx-part4-data) ⭐️ 7.0/10
+
+Hugging Face 发布了 PRX 系列的第四部分，专门介绍其计算机视觉项目背后的数据策略。 这份文档为真实世界的 AI 开发工作流程提供了宝贵的见解，特别是对于计算机视觉项目，帮助从业者理解如何在自己的实施中处理数据策略。 PRX 项目代表了 Hugging Face 将计算机视觉集成到视觉语言模型中的方法，本部分专门介绍数据收集、准备和管理策略。
+
+rss · Hugging Face Blog · 7月6日 15:30
+
+**背景**: Hugging Face 是机器学习和 AI 的领先平台，托管众多模型和数据集。PRX 项目似乎是他们在计算机视觉领域的举措，计算机视觉正越来越多地整合到视觉语言模型中。随着计算机视觉技术的发展，有效的数据策略对于模型开发和性能变得至关重要。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://groundy.com/articles/hugging-face-is-absorbing-computer-vision-into-vision-language-models/">Hugging Face Is Absorbing Computer Vision Into Vision ...</a></li>
+<li><a href="https://github.com/huggingface/computer-vision-course">GitHub - huggingface/computer-vision-course: This repo is the ...</a></li>
+<li><a href="https://github.com/maryammagy/huggingface-CV">Community-led Computer Vision Community Course - GitHub</a></li>
+
+</ul>
+</details>
+
+**社区讨论**: 根据搜索结果，Hugging Face 的 Discord 服务器上似乎有一个活跃的计算机视觉社区，有专门的频道讨论计算机视觉课程和项目。这表明围绕 Hugging Face 的计算机视觉倡议有很强的社区参与度。
+
+**标签**: `#data-strategy`, `#computer-vision`, `#hugging-face`, `#ai-implementation`, `#case-study`
 
 ---
 
 <a id="item-12"></a>
-## [4x 16GB 家庭实验室设置](https://www.reddit.com/r/LocalLLaMA/comments/1up8kdi/the_cyber_shelf_4x_16gb_home_lab/) ⭐️ 7.0/10
+## [腾讯发布 Hy3 MoE 模型](https://simonwillison.net/2026/Jul/6/hy3/#atom-everything) ⭐️ 7.0/10
 
-一位创作者使用厨房架子搭建了 4x 16GB GPU 的家庭实验室，通过分叉主槽配置运行 Qwen 3.6 模型，实现了每秒 1000 个标记的提示处理和 45-60 个标记的生成速度。 这个设置展示了一种在消费级硬件上运行多个 LLM 实例的经济有效方法，使高级 AI 推理对个人开发者更加可及，无需昂贵的企业级解决方案。 该设置使用 i5 处理器和 32GB DDR4 RAM，专注于 VRAM 使用，采用 llama.cpp 进行模型管理，并包含使用 opcode 构建的自定义后端进行 llamacpp 管理和标记计数，创作者表示尽管遇到各种错误，但已经节省了 60 美元。
+腾讯发布了 Hy3，一个拥有 295B 参数的专家混合模型，其中只有 21B 是活跃参数，其性能超越同类规模模型，并能胜过参数量是其 2-5 倍的更大模型。 这一发布代表了中国科技公司在开源 AI 模型领域的重要进展，为研究人员和开发者提供了强大的专家混合架构，可能加速 AI 应用和生产力工具的创新。 Hy3 模型提供两个版本 - 完整的 598GB 版本和 300GB 的 FP8 量化版本 - 支持 256K tokens 的上下文长度，目前在 OpenRouter 上免费使用直至 7 月 21 日。
 
-reddit · r/LocalLLaMA · /u/HippEMechE · 7月6日 20:05
+rss · Simon Willison · 7月6日 23:57
 
-**背景**: llama.cpp 是一个开源软件库，用于对各种大型语言模型（如 Llama）进行推理，与 GGML 项目共同开发。它被认为是本地推理工具的实际标准，用 C/C++编写。Qwen 3.6 是阿里巴巴云开发的大型语言模型，与之前的 Qwen 模型相比，在代理编码和思维保持方面有显著改进。
+**背景**: 专家混合(MoE)是一种神经网络架构，将模型参数划分为较小的"专家"子网络，通过路由机制将每个输入 token 导向最相关的专家。这种方法允许模型容量更大而不会成比例增加计算成本。FP8 量化是一种通过 8 位浮点格式表示权重来减小模型大小的技术，能在几乎不损失精度的情况下实现更快的推理。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Llama.cpp">Llama.cpp</a></li>
-<li><a href="https://ollama.com/library/qwen3.6">qwen 3 . 6</a></li>
-<li><a href="https://huggingface.co/collections/Qwen/qwen36">Qwen 3 . 6 - a Qwen Collection</a></li>
+<li><a href="https://huggingface.co/blog/moe">Mixture of Experts Explained - Hugging Face</a></li>
+<li><a href="https://www.spheron.network/blog/fp8-quantization-inference-performance-hardware-explained/">What is FP8 Quantization? AI Inference Performance, Accuracy, and Hardware Support Explained (2026) | Spheron Blog</a></li>
+<li><a href="https://openrouter.ai/">OpenRouter</a></li>
 
 </ul>
 </details>
 
-**标签**: `#home lab`, `#LLM inference`, `#llama.cpp`, `#Qwen 3.6`, `#GPU setup`
+**标签**: `#AI models`, `#Mixture-of-Experts`, `#Tencent`, `#Large language models`, `#Open source`
 
 ---
 
 <a id="item-13"></a>
-## [开发者对本地 AI 编程助手性能感到沮丧](https://www.reddit.com/r/LocalLLaMA/comments/1up01zs/am_i_expecting_too_much/) ⭐️ 7.0/10
+## [首个空间原生具身视觉模型开源](https://www.qbitai.com/2026/07/445230.html) ⭐️ 7.0/10
 
-一位使用 RTX 5090 运行 Qwen 3.6 27B 并通过 VS Code 中的 Cline 的开发者，正在努力实现详细的编程计划，尽管拥有高端硬件和大上下文窗口，但发现 AI 会犯基本错误并编写损坏的终端命令。 这突显了当前本地 AI 编程助手的实际局限性，可能会影响开发者考虑本地解决方案与 Claude Code 等云替代方案的选择，并为即使是高端本地模型的功能提供真实世界的反馈。 开发者正在运行 131K 上下文的 Qwen 3.6 27B UD_4，无 KV 量化，由 Unsloth 量化，使用 VS Code 中的 Cline 作为界面，并将其与使用 Claude Code 的积极体验进行比较。
+蚂蚁灵波发布了首个空间原生的具身视觉开源模型，旨在提升机器人对物理世界的感知能力。 这一突破可能显著提升机器人的感知能力，实现更复杂的人机交互和在真实环境中的应用。 该模型结合了空间计算原理与具身人工智能，创建了一个能够以三维方式理解和与物理世界交互的视觉系统。
 
-reddit · r/LocalLLaMA · /u/adcimagery · 7月6日 15:08
+rss · 量子位 · 7月7日 04:48
 
-**背景**: Qwen 3.6 是由阿里巴巴云的 Qwen 团队开发的本地 AI 模型，提供多种尺寸，包括 27B 密集模型和 MoE 版本。Cline 是 VS Code 的一个扩展，提供 AI 编程助手界面，类似于 Claude Code 但用于本地模型。量化是一种通过降低数值精度来减少模型大小和内存要求的过程，Unsloth 提供一种动态方法，通过将重要层保持在高比特精度来保留准确性。
+**背景**: 具身人工智能被普遍认为是通用人工智能的关键组成部分，专注于控制实体在物理世界中执行任务。空间计算实现了在真实世界而非屏幕背后的三维人机交互技术。通过视觉-语言-动作模型整合这些领域代表了机器人能力的重大进步。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://lmstudio.ai/models/qwen3.6">Qwen 3 . 6</a></li>
-<li><a href="https://ollama.com/library/qwen3.6:27b-q4_K_M">qwen 3 . 6 :27b-q4_K_M</a></li>
-<li><a href="https://unsloth.ai/docs/basics/unsloth-dynamic-2.0-ggufs/unsloth-dynamic-ggufs-on-aider-polyglot?ref=ainews.srv2.digi-stud.io">unsloth . ai /docs/basics/ unsloth -dynamic-2.0-ggufs/ unsloth -dynamic...</a></li>
+<li><a href="https://arxiv.org/abs/2405.14093">A Survey on Vision-Language-Action Models for Embodied AI Frontiers | A review of embodied intelligence systems: a ... A Survey on Vision-Language-Action Models for Embodied AI A Survey on Vision–Language–Action Models for Embodied AI Embodied AI 2026: From Robot Foundation Models to Industrial ... Alibaba's Qwen Team Enters Embodied AI With Qwen-VLA Model LAECIPS: Large vision model assisted adaptive edge–cloud ...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Spatial_computing">Spatial computing - Wikipedia</a></li>
+<li><a href="https://www.meegle.com/en_us/topics/spatial-computing/spatial-computing-in-robotics">Spatial Computing In Robotics</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 该帖子来自 Reddit 的 LocalLLaMA 社区，开发者们在这里讨论本地 AI 模型。该帖子可能包含其他开发者分享的使用 Qwen 和类似本地编程助手的经验，可能建议可能效果更好的替代方法或模型。
-
-**标签**: `#local-llm`, `#coding-assistant`, `#ai-tools`, `#qwen`, `#claude-code`
+**标签**: `#AI vision`, `#robotics`, `#open-source`, `#embodied AI`, `#spatial computing`
 
 ---
 
 <a id="item-14"></a>
-## [REAP 剪枝 DeepSeek 在 Ascent GX10 上实现长上下文一致性](https://www.reddit.com/r/LocalLLaMA/comments/1up6t50/got_my_ascent_gx10_two_days_ago_ran_reappruned/) ⭐️ 7.0/10
+## [蚂蚁发布灵波深度 2.0 机器人视觉模型](https://www.qbitai.com/2026/07/445184.html) ⭐️ 7.0/10
 
-一名用户成功在 Ascent GX10 个人 AI 超级计算机上部署了 REAP 剪枝的 NVFP4 DeepSeek-V4-Flash 模型，展示了从 4K 到 65K tokens 各种上下文长度下的一致性能。 这表明先进的 AI 模型可以在消费级硬件上高效运行，使强大的 AI 更加普及，同时保持复杂应用所需的长上下文能力。 该实现使用了修补的 eugr/spark-vllm-docker 镜像，并取得了令人印象深刻的吞吐量指标，即使在最大 65K 上下文长度下仍能保持 655+ tokens/秒的吞吐量，但在更高的并发水平下延迟增加。
+蚂蚁集团正式发布了灵波深度 2.0，这是一个更新的机器人视觉空间感知模型，在机器人视觉理解方面取得了突破，特别是在涉及镜子和玻璃的挑战性场景中表现优异。 这一进展具有重要意义，因为它增强了机器人感知和与复杂 3D 环境交互的能力，这对于自主导航、物体操作和现实环境中的人机交互等应用至关重要。 灵波深度 2.0 已通过奥比中光深度视觉实验室认证，可将不完整、有噪声的深度传感器数据转换为高质量、度量准确的 3D 测量结果，预计年底前推出集成相机产品。
 
-reddit · r/LocalLLaMA · /u/Dry-Tough-8068 · 7月6日 19:01
+rss · 量子位 · 7月7日 03:35
 
-**背景**: REAP（路由器加权专家激活剪枝）是一种根据专家对层输出的贡献选择性剪枝神经网络的技术，使模型部署更加高效。Ascent GX10 是一款由 NVIDIA GB10 Grace Blackwell Superchip 驱动的个人 AI 超级计算机，具有 128GB 统一内存，能够处理多达 2000 亿参数的模型。长上下文一致性指的是 AI 模型在输入上下文窗口扩展时保持性能和连贯性的能力，这对需要理解大量文本或保持复杂对话线程的应用至关重要。
+**背景**: 空间感知对机器人有效感知和与周围环境交互至关重要。它涉及感知 3D 结构、推理物体关系以及在物理约束下行动的能力。灵波深度 2.0 建立在视觉基础模型灵波视觉之上，构建了从'理解'到'精确感知'的能力链，以解决机器人视觉中的核心挑战。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/CerebrasResearch/reap">GitHub - CerebrasResearch/ reap : REAP : Router-weighted Expert...</a></li>
-<li><a href="https://itc.ua/en/news/asus-unveils-ascent-gx10-mini-supercomputer-on-nvidia-grace-blackwell-with-1000-tops-performance/">Asus unveils Ascent GX 10 mini-supercomputer on Nvidia Grace...</a></li>
-<li><a href="https://medium.com/@adnanmasood/long-context-windows-in-large-language-models-applications-in-comprehension-and-code-03bf4027066f">Long - Context Windows in Large Language Models... | Medium</a></li>
+<li><a href="https://news.aibase.com/news/29432">Robot Vision Achieves New Breakthrough! Ant Group's LingBot-Depth...</a></li>
+<li><a href="https://xix.ai/live/5700">Ant Group’s Lingbo Tech launched LingBot - Depth 2 . 0 , a spatia - xix.ai</a></li>
+<li><a href="https://github.com/Robbyant/lingbot-depth">GitHub - Robbyant/ lingbot - depth : Masked Depth Modeling for Spatial...</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 该帖子来自 LocalLLaMA 社区，该社区专注于 AI 模型优化和部署，表明技术实现和性能指标将受到该领域专家的审查和讨论。
+**标签**: `#robot-vision`, `#computer-vision`, `#ai-models`, `#spatial-perception`, `#robotics`
 
-**标签**: `#AI model optimization`, `#Hardware acceleration`, `#DeepSeek models`, `#REAP pruning`, `#Performance metrics`
+---
+
+<a id="item-15"></a>
+## [中国企业为机器人开发类脑 AI 系统](https://www.qbitai.com/2026/07/444733.html) ⭐️ 7.0/10
+
+一家中国公司在联合国展示了一种为机器人设计的类脑 AI 系统，该系统通过模仿神经处理而非依赖大量计算能力来减少计算需求。 这种方法可以显著减少 AI 系统的能源消耗，使机器人技术更加可持续和可及，同时可能解决与大量 AI 计算需求相关的日益增长的环境问题。 类脑 AI 系统似乎利用了神经形态计算原理，该原理通过小型计算元素模拟人脑的分布式处理，优先考虑鲁棒性和适应性而非原始计算能力。
+
+rss · 量子位 · 7月6日 10:40
+
+**背景**: 神经形态计算是一种受人类大脑结构和功能启发的计算方法，使用人工神经元执行计算。该领域整合了生物学、物理学、数学、计算机科学和电子工程，以开发模拟大脑形态和计算策略的系统。随着传统 AI 系统需要大量计算资源和能源消耗，开发节能 AI 变得越来越重要。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Neuromorphic_computing">Neuromorphic computing</a></li>
+<li><a href="https://www.mdpi.com/2079-9292/13/19/3836">Energy Efficiency Evaluation of Artificial Intelligence ...</a></li>
+<li><a href="https://garijohnson.substack.com/p/learning-from-asia-what-global-ai">Learning from Asia: What Global AI Development Can Gain from...</a></li>
+
+</ul>
+</details>
+
+**标签**: `#AI applications`, `#robotics`, `#brain-like AI`, `#Chinese AI`, `#efficient AI`
 
 ---
